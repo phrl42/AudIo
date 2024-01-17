@@ -1,3 +1,3 @@
 # AudIo
 
-self written neural network that helps me generate music for banana
+This is a neural network that helps me to create music for my games.
