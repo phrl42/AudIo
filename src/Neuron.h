@@ -3,7 +3,5 @@
 class Neuron
 {
 public:
-  Neuron();
-  ~Neuron();
-
+  virtual ~Neuron() = 0;
 };

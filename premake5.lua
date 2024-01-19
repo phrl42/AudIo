@@ -9,8 +9,6 @@ project "AudIo"
     targetdir "bin/target/%{cfg.buildcfg}/%{prj.name}"
     objdir "bin/obj/%{cfg.buildcfg}/%{prj.name}"
 
-    pchheader "miniaudio.h"
-
     files {
       "src/**.cpp",
       "src/**.h",

@@ -7,4 +7,6 @@ class Layer
 public:
   Layer();
   ~Layer();
+
+  std::vector<Neuron> neurons;
 };

@@ -19,9 +19,6 @@ endif
 # #############################################
 
 RESCOMP = windres
-PCH = miniaudio.h
-PCH_PLACEHOLDER = $(OBJDIR)/$(notdir $(PCH))
-GCH = $(PCH_PLACEHOLDER).gch
 INCLUDES += -Iinclude -Isrc
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
@@ -63,6 +60,19 @@ endif
 # File sets
 # #############################################
 
+GENERATED :=
+OBJECTS :=
+
+GENERATED += $(OBJDIR)/HiddenNeuron.o
+GENERATED += $(OBJDIR)/InputNeuron.o
+GENERATED += $(OBJDIR)/Neuron.o
+GENERATED += $(OBJDIR)/OutputNeuron.o
+GENERATED += $(OBJDIR)/main.o
+OBJECTS += $(OBJDIR)/HiddenNeuron.o
+OBJECTS += $(OBJDIR)/InputNeuron.o
+OBJECTS += $(OBJDIR)/Neuron.o
+OBJECTS += $(OBJDIR)/OutputNeuron.o
+OBJECTS += $(OBJDIR)/main.o
 
 # Rules
 # #############################################
@@ -70,7 +80,7 @@ endif
 all: $(TARGET)
 	@:
 
-$(TARGET): $(OBJECTS) $(LDDEPS) | $(TARGETDIR)
+$(TARGET): $(GENERATED) $(OBJECTS) $(LDDEPS) | $(TARGETDIR)
 	$(PRELINKCMDS)
 	@echo Linking AudIo
 	$(SILENT) $(LINKCMD)
@@ -125,6 +135,22 @@ endif
 
 # File Rules
 # #############################################
+
+$(OBJDIR)/HiddenNeuron.o: src/HiddenNeuron.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/InputNeuron.o: src/InputNeuron.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/Neuron.o: src/Neuron.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/OutputNeuron.o: src/OutputNeuron.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/main.o: src/main.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 
 -include $(OBJECTS:%.o=%.d)
 ifneq (,$(PCH))
