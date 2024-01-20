@@ -1,11 +1,14 @@
 #include "Neuron.h"
+#include "incs.h"
 
-Neuron::Neuron()
+void Neuron::Trigger(float val, float weight)
 {
-  
+  value += val * weight;
 }
 
-Neuron::~Neuron()
+void Neuron::Leave()
 {
+  value += bias;
 
+  value = activation(value);
 }

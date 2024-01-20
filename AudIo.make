@@ -65,9 +65,11 @@ OBJECTS :=
 
 GENERATED += $(OBJDIR)/Layer.o
 GENERATED += $(OBJDIR)/Neuron.o
+GENERATED += $(OBJDIR)/Train.o
 GENERATED += $(OBJDIR)/main.o
 OBJECTS += $(OBJDIR)/Layer.o
 OBJECTS += $(OBJDIR)/Neuron.o
+OBJECTS += $(OBJDIR)/Train.o
 OBJECTS += $(OBJDIR)/main.o
 
 # Rules
@@ -136,6 +138,9 @@ $(OBJDIR)/Layer.o: src/Layer.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/Neuron.o: src/Neuron.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/Train.o: src/Train.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/main.o: src/main.cpp

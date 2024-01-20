@@ -3,9 +3,12 @@
 class Neuron
 {
 public:
-  Neuron();
-  ~Neuron();
+  Neuron() = default;
+  ~Neuron() = default;
 
-private:  
-  int value = 0;
+  void Trigger(float val, float weight);
+  void Leave();
+  
+  float value = 0;
+  float bias = 0;
 };
