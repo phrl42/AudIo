@@ -63,15 +63,11 @@ endif
 GENERATED :=
 OBJECTS :=
 
-GENERATED += $(OBJDIR)/HiddenNeuron.o
-GENERATED += $(OBJDIR)/InputNeuron.o
+GENERATED += $(OBJDIR)/Layer.o
 GENERATED += $(OBJDIR)/Neuron.o
-GENERATED += $(OBJDIR)/OutputNeuron.o
 GENERATED += $(OBJDIR)/main.o
-OBJECTS += $(OBJDIR)/HiddenNeuron.o
-OBJECTS += $(OBJDIR)/InputNeuron.o
+OBJECTS += $(OBJDIR)/Layer.o
 OBJECTS += $(OBJDIR)/Neuron.o
-OBJECTS += $(OBJDIR)/OutputNeuron.o
 OBJECTS += $(OBJDIR)/main.o
 
 # Rules
@@ -136,16 +132,10 @@ endif
 # File Rules
 # #############################################
 
-$(OBJDIR)/HiddenNeuron.o: src/HiddenNeuron.cpp
-	@echo $(notdir $<)
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/InputNeuron.o: src/InputNeuron.cpp
+$(OBJDIR)/Layer.o: src/Layer.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/Neuron.o: src/Neuron.cpp
-	@echo $(notdir $<)
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/OutputNeuron.o: src/OutputNeuron.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/main.o: src/main.cpp
