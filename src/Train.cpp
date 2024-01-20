@@ -22,7 +22,7 @@ void Train::Init()
   for(uint8_t i = 0; i < INPUT_NEURONS; i++)
   {
     Neuron neuron = Neuron();
-    neuron.value = input[4][i];
+    neuron.value = input[0][i];
     
     input_layer.neurons.push_back(neuron);
   }
@@ -50,7 +50,5 @@ void Train::Run()
     }
 
     output.Leave();
-
-    std::cout << "output value: " << output.value << std::endl;
   }
 }
